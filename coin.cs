@@ -9,7 +9,7 @@ public class coin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            FindObjectOfType<effect>().co_effect();
+            //FindObjectOfType<effect>().co_effect();
             Destroy(gameObject);
             FindObjectOfType<Score>().SetScore();
             

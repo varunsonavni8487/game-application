@@ -43,7 +43,7 @@ public class Player_Movement : MonoBehaviour
     public float duration = 5;
 
     public Text text_inbetween;
-    public string[] text = { "Adorable...", "Keep Going...", "Keep it Up..." };
+    public string[] text = {};
     int temp = 0;
 
     float timer = 0;
@@ -117,16 +117,12 @@ public class Player_Movement : MonoBehaviour
        
         else 
         {
-            
             if (count==true)
-            {
-                
+            {              
                 timer = xbuttondistance;
                 ultstatus.text = "Ultimate Ability : Disabled..";
             }
         }
-        
-
     }
     public void OnCollisionEnter(Collision collision)
     {
@@ -152,12 +148,12 @@ public class Player_Movement : MonoBehaviour
         {
             FindObjectOfType<Coin_effect>().Effect();
         }
-        if (collision.collider.tag == "text_trigger" )
+        /*if (collision.collider.tag == "text_trigger" )
         {
             text_inbetween.text = text[temp];
             temp++;
             Invoke("rename", 1.5f);
-        }
+        }*/
 
         if (collision.collider.tag == "ground" )
         {
@@ -186,9 +182,14 @@ public class Player_Movement : MonoBehaviour
     {
         if(other.tag == "text_trigger")
         {
-            text_inbetween.text = text[temp];
-            temp++;
-            Invoke("rename", 1.5f);
+            if (temp < 5)
+            {
+                Debug.Log(text[temp]);
+                Debug.Log(temp);
+                text_inbetween.text = text[temp];
+                temp = temp + 1;
+                Invoke("rename", 1.5f);
+            }
         }
     }
     /*void OnTriggerEnter(Collider other)
